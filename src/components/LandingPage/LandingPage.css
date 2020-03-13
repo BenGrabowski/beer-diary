@@ -1,0 +1,25 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: rgb(161, 161, 161);
+}
+
+.hero-heading {
+    font-size: 100px;
+}
+
+.info-container {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.info {
+    max-width: 500px;
+}
