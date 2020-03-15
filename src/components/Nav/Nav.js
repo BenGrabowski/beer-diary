@@ -1,9 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
+import Context from '../../Context';
 
 class Nav extends Component {
-    
+    static contextType = Context;
+
+    state = {
+        loggedIn: this.context.loggedIn
+    }
+
+    renderLogIn() {
+        return (
+            <div className='not-logged-in'>
+                <Link to={'/login'}>Login</Link>
+                <Link to={'/register'}>Register</Link>
+            </div>
+        );
+    }
+
+    renderLogOut() {
+        return (
+            <div className='logged-in'>
+                <Link
+                    to={'/beers'}
+                    className='nav-link'
+                >
+                    My Beers
+                </Link>
+                <Link to={'/'}>Logout</Link>
+            </div>
+        )
+    }
     
     render() {
         return (
@@ -14,12 +42,10 @@ class Nav extends Component {
                 >
                     Beer Diary
                 </Link>
-                <Link
-                    to={'/beers'}
-                    className='nav-link'
-                >
-                    My Beers
-                </Link>
+                {(this.state.loggedIn)
+                    ? this.renderLogOut()
+                    : this.renderLogIn()
+                }
             </nav>
         );
     }
