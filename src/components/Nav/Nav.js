@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
-import Context from '../../Context';
+import BeersContext from '../../Context';
+import TokenService from '../../services/token-service';
 
 class Nav extends Component {
-    static contextType = Context;
-
-    state = {
-        loggedIn: this.context.loggedIn
-    }
+    static contextType = BeersContext;
 
     renderLogIn() {
         return (
@@ -33,7 +30,7 @@ class Nav extends Component {
         )
     }
     
-    render() {
+    render() {      
         return (
             <nav role="navigation" className="nav-bar">
                 <Link
@@ -42,7 +39,7 @@ class Nav extends Component {
                 >
                     Beer Diary
                 </Link>
-                {(this.state.loggedIn)
+                {TokenService.hasAuthToken()
                     ? this.renderLogOut()
                     : this.renderLogIn()
                 }
