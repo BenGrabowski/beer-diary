@@ -5,7 +5,7 @@ import BeersContext from '../../Context';
 import TokenService from '../../services/token-service';
 
 class Nav extends Component {
-    static contextType = BeersContext;
+    static contextType = BeersContext;  
 
     renderLogIn() {
         return (
@@ -39,10 +39,12 @@ class Nav extends Component {
                 >
                     Beer Diary
                 </Link>
-                {TokenService.hasAuthToken()
-                    ? this.renderLogOut()
-                    : this.renderLogIn()
-                }
+                <div>
+                  {TokenService.hasAuthToken()
+                      ? this.renderLogOut()
+                      : this.renderLogIn()
+                  }
+                </div>
             </nav>
         );
     }
